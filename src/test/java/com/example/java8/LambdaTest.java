@@ -243,9 +243,9 @@ public class LambdaTest {
         list.removeIf(filter);
         System.out.println(list);
 
-        filter = (i) -> i/2==0;
+        filter = (i) -> i%2==0;
         list2.removeIf(filter);
-        System.out.println(list2); // filter 조건 한개만 지워지는 듯.
+        System.out.println(list2);
     }
 
     /*
@@ -351,7 +351,31 @@ public class LambdaTest {
     모든 요소에 치환작업 f를 수행
      */
     @Test
-    public void lambda27() {}
+    public void lambda27() {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i=0; i<10; i++) list.add(i);
+
+        // list의 모든 요소를 출력
+        list.forEach(i-> System.out.println(i+","));
+        System.out.println(list);
+
+        // list의 2 또는 3 배수를 제거한다.
+        list.removeIf(x-> x%2==0 || x%3==0);
+        System.out.println(list);
+
+        list.replaceAll(i->i*10); // list의 각 요소에 10을 곱한다.
+        System.out.println(list);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("1","호우");
+        map.put("2","호오우");
+        map.put("3","우아앙");
+        map.put("4","홍홍홍");
+
+        // map의 모든 요소를 {k,v}의 형식으로 출력한다.
+        map.forEach((k,v) -> System.out.println("{"+k+","+v+"},"));
+        System.out.println(map);
+    }
 
     /*
 

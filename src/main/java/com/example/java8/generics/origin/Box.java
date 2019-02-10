@@ -1,4 +1,4 @@
-package com.example.java8.origin;
+package com.example.java8.generics.origin;
 
 public class Box {
     Object item;
