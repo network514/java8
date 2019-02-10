@@ -5,10 +5,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.*;
 
 @SpringBootTest
@@ -207,4 +204,168 @@ public class LambdaTest {
         TriFunction<Double, Integer, Integer, Double> function = (number1, number2, number3) -> number1 * number2 / number3;
         System.out.println("결과 값 : " + function.apply(1.0, 2, 3));
     }
+
+    /*
+    UnaryOperator<T>
+    Function의 자손, Function과 달리 매개변수와 결과의 타입이 같다.
+     */
+    @Test
+    public void lambda17() {
+      UnaryOperator<Integer> unaryOperator = (number) -> number*number;
+        System.out.println("제곱수 : " + unaryOperator.apply(3));
+    }
+
+    /*
+    BinaryOperator<T>
+    BiFunction의 자손, BiFunction과 달리 매개변수와 결과의 타입이 같다.
+     */
+    @Test
+    public void lambda18() {
+        BinaryOperator<Integer> binaryOperator = (number1, number2) -> number1*number2;
+        System.out.println("제곱수 : " + binaryOperator.apply(5,5));
+    }
+
+    /*
+    Collection
+    boolean removeIf(Predicate<E> filter)
+    조건에 맞는 요소를 삭제
+     */
+    @Test
+    public void lambda19() {
+        List<Integer> list = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+
+        for(int i=1;i<11;i++) list.add(i);
+
+        list2.addAll(list);
+
+        Predicate<Integer> filter = (i) -> i==3;
+        list.removeIf(filter);
+        System.out.println(list);
+
+        filter = (i) -> i/2==0;
+        list2.removeIf(filter);
+        System.out.println(list2); // filter 조건 한개만 지워지는 듯.
+    }
+
+    /*
+    List
+    void replaceAll(UnaryOperator<E> operator)
+    모든 요소를 변환하여 대체
+     */
+    @Test
+    public void lambda20() {
+        List<Integer> list = new ArrayList<>();
+        for (int i=0; i < 10 ; i++) list.add(i);
+        UnaryOperator<Integer> operator = (number) -> number*number;
+        list.replaceAll(operator);
+        System.out.println(list);
+    }
+
+    /*
+    Iterable
+    void forEach(Consumer<T> action)
+    모든 요소에 작업 action을 수행
+     */
+    @Test
+    public void lambda21() {
+        List<Integer> list = new ArrayList<>();
+        for (int i=0; i < 10 ; i++) list.add(i);
+
+        Consumer<Integer> consumer = (integer) -> System.out.println("호오오오오우우우!!!" + integer);
+        list.forEach(consumer);
+        System.out.println(list);
+        list.forEach((integer)-> System.out.println("흠흠흠 " + integer));
+        System.out.println(list);
+    }
+
+    /*
+    Map
+    V compute(K key, BiFunction<K,V,V> f)
+    지정된 키의 값에 작업 f를 수행
+     */
+    @Test
+    public void lambda22() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("호우호우", 1);
+        map.put("홍홍홍", 2);
+        map.put("루룰루", 3);
+        map.put("랄랄라", 5);
+
+        BiFunction<String,Integer,Integer> function = (a,b) -> b*b*b;
+        map.compute("홍홍홍", function);
+        System.out.println(map);
+
+        map.compute("룰룰루", (a,b) -> b*b*b*b);
+        System.out.println(map);
+    }
+
+    /*
+    Map
+    V computeIfAbsent(K key, Function<K,V> f)
+    키가 없으면, 작업 f 수행 후 추가
+     */
+    @Test
+    public void lambda23() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("호우호우", 1);
+        map.put("홍홍홍", 2);
+        map.put("루룰루", 3);
+        map.put("랄랄라", 5);
+
+        Function<String,Integer> function = (a) -> 500;
+        map.computeIfAbsent("울랄라", function);
+        System.out.println(map);
+
+        map.computeIfAbsent("홍홍홍", function);
+        System.out.println(map);
+    }
+
+    /*
+    Map
+    V computeIfPresent(K key, BiFunction<K,V,V> f)
+    지정된 키가 있을 때, 작업 f 수행
+     */
+    @Test
+    public void lambda24() {
+
+    }
+
+    /*
+    Map
+    V merge(K key, V value, BiFunction<V,V,V> f)
+    모든 요소에 병합작업 f를 추가
+     */
+    @Test
+    public void lambda25() {}
+
+    /*
+    void forEach(BiConsumer<K,V> action)
+    모든 요소에 작업 action을 수행
+     */
+    @Test
+    public void lambda26() {}
+
+    /*
+    void replaceAll(BiFunction<K,V,V> f)
+    모든 요소에 치환작업 f를 수행
+     */
+    @Test
+    public void lambda27() {}
+
+    /*
+
+     */
+    @Test
+    public void lambda28() {}
+    /*
+
+     */
+    @Test
+    public void lambda29() {}
+    /*
+
+     */
+    @Test
+    public void lambda30() {}
 }
