@@ -19,9 +19,9 @@ public class Square {
 
         for(int i = 0 ; i < input ; i++) {
             for(int j = 0 ; j < input ; j++) {
-                if(i==0 || i==inputArr || j==0 || j == inputArr) {
+                if(i==0 || i==inputArr || j==0 || j == inputArr) { // 테두리
                     arr[i][j] = 9;
-                } else if(i==j || inputArr-i==j) {
+                } else if(i==j || inputArr-i==j) { // 대각선
                     arr[i][j] = 9;
                 } else {
                     arr[i][j] = 0;
