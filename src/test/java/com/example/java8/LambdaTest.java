@@ -328,6 +328,11 @@ public class LambdaTest {
      */
     @Test
     public void lambda24() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("호우호우", 1);
+        map.put("홍홍홍", 2);
+        map.put("루룰루", 3);
+        map.put("랄랄라", 5);
 
     }
 
@@ -337,7 +342,13 @@ public class LambdaTest {
     모든 요소에 병합작업 f를 추가
      */
     @Test
-    public void lambda25() {}
+    public void lambda25() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("호우호우", 1);
+        map.put("홍홍홍", 2);
+        map.put("루룰루", 3);
+        map.put("랄랄라", 5);
+    }
 
     /*
     void forEach(BiConsumer<K,V> action)
